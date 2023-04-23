@@ -1,0 +1,66 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static 'itservice/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'itservice/css/main.css' %}">
+    <title>Enigma corp</title>
+</head>
+<body>
+<header class="header">
+   <nav class="sidebar-navigation">
+	<ul>
+		<li class="active">
+			<i class="fa fa-share-alt"></i>
+			<span class="tooltip">Connections</span>
+		</li>
+		<li>
+			<i class="fa fa-hdd-o"></i>
+			<span class="tooltip">Devices</span>
+		</li>
+		<li>
+			<i class="fa fa-newspaper-o"></i>
+			<span class="tooltip">Contacts</span>
+		</li>
+		<li>
+			<i class="fa fa-print"></i>
+			<span class="tooltip">Fax</span>
+		</li>
+		<li>
+			<i class="fa fa-sliders"></i>
+			<span class="tooltip">Settings</span>
+		</li>
+	</ul>
+</nav>
+</header>
+<main>
+<div class="main-form">
+    {% block content %}
+
+    {% endblock %}
+</div>
+</main>
+<footer class="footer">
+         <ul class="footer-list">
+            <li class="footer-list-text"><a href="#" title="Общая информация">Электронная почта для вопросов</a><br>employ@mail.ru</li>
+             {% if user.is_authenticated %}
+            <li class="footer-list-text"><a href="" title="Аккаунт">Аккаунт</a><br>Ваш личный аккаунт, где вы можете <br>посмотреть ваши записи на курсы</li>
+             {% else %}
+             <li class="footer-list-text"><a href="" title="Аккаунт">Аккаунт</a><br>Ваш личный аккаунт, где вы можете <br>посмотреть ваши записи на курсы</li>
+             {% endif %}
+            <li class="footer-list-text"><a href="" title="Ответы на вопросы">Ответы на вопросы</a><br>Ответы на часто задаваемые вопросы</li>
+        </ul>
+</footer>
+<script>
+function myFunction() {
+
+    var x = document.getElementById("headerNav");
+    if (x.className === "header-nav-list") {
+        x.className += "responsive";
+    } else {
+        x.className = "header-nav-list";
+    }
+}
+</script>
+</body>
+</html>
