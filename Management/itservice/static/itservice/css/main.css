@@ -1,84 +1,64 @@
-
-* {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	font-family: 'Lato', sans-serif;
-	line-height: 1;
-}
-
 body {
-	background-color: #F5F6F8;
-	overflow: hidden;
+    display: flex;
+}
+.header{
+    box-shadow: 0 7px 7px -4px rgba(0, 0, 0, .2);
+    height: 6%;
+    width: 100%;
+    background-color: white;
+    display: flex;
 }
 
-
-
-
-.sidebar-navigation {
-	display: inline-block;
-	min-height: 100vh;
-	width: 80px;
-	background-color: #313443;
-	float: left;
+.header-name{
+    font-size: 30px;
+    padding-left: 20px;
+    padding-top: 10px;
+    font-weight: bold;
 }
 
-.sidebar-navigation	ul {
-    text-align: center;
-    color: white;}
+.help{
+    position: absolute;
+    right: 0;
+    padding-right: 20px;
+    padding-top: 15px;
+    font-weight: bold;
+    font-size: 20px;
 
-.sidebar-navigation li {
-    padding: 28px 0;
-    cursor: pointer;
-    transition: all ease-out 120ms;
 }
+.sidebar{
+    width: 7.5%;
+    min-height: 100vh;
+    background-color: #252930;
+    color: lightgray;
+    font-size: 20px;
 
-
-.sidebar-navigation i {
+}
+.sidebar ul a{
     display: block;
-    font-size: 24px;
-    transition: all ease 450ms;
+    line-height: 65px;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border-top:1px solid rgba(255,255,255,.1);
+    /*border-bottom:1px solid rgba(255,255,255,.1);*/
+    border-bottom:1px solid black;
+    transition: 0.4s;
 }
 
-.sidebar-navigation .tooltip {
+ul li:hover a{
+    padding-left:30px;
+}
+
+.main{
     display: inline-block;
-    position: absolute;
-    background-color:#313443;padding: 8px 15px;
-    border-radius: 3px;
-    margin-top: -26px;
-    left: 90px;
-    opacity: 0;
-    visibility: hidden;
-    font-size: 13px;
-    letter-spacing: .5px;
+    width: 92.5%;
+    min-height: 100vh;
+
 }
 
-
-.sidebar-navigation :before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: -4px;
-    top: 10px;
-    transform: rotate(45deg);
-    width: 10px;
-    height: 10px;
-    background-color: inherit;
-}
+.main-form{
+    height: 94%;
+    width: 100%;
 
 
-.sidebar-navigation :hover {
-    background-color: #22252E;
-}
-.sidebar-navigation .tooltip {
-    visibility: visible;
-    opacity: 1;
-}
 
-
-.sidebar-navigation .active {
-    background-color: #22252E;}
-
-.sidebar-navigation i {
-    color:  #98D7EC;
 }
