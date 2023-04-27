@@ -1,5 +1,7 @@
 body {
     display: flex;
+    font-weight: initial;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
 }
 .header{
     box-shadow: 0 7px 7px -4px rgba(0, 0, 0, .2);
@@ -23,8 +25,55 @@ body {
     padding-top: 15px;
     font-weight: bold;
     font-size: 20px;
+}
+
+
+.tooltip{
+    right: 0;
+    border-bottom: 1px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip:before,
+.tooltip:after {
+    display: block;
+    position: absolute;
+    opacity:0;
+    visibility: hidden;
+    margin-top: 15px;
+    transition: 0.7s;
+}
+
+.tooltip:before{
+    background-color: #252930;
+    content: attr(data-title);
+    color:lightgray;
+    font-weight: initial;
+    min-width: 200px;
+    min-height: 50px;
+    border-radius: 5px;
+    margin-left: -160px;
+    top:50px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 20px;
+
 
 }
+
+.tooltip:after {
+    content: "";
+}
+
+.tooltip:hover:before{
+    visibility: visible;
+    opacity:1;
+    margin-top: 0px;
+}
+
+
 .sidebar{
     width: 7.5%;
     min-height: 100vh;
@@ -58,7 +107,72 @@ ul li:hover a{
 .main-form{
     height: 94%;
     width: 100%;
+}
 
 
 
+.warpper {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 0 10px;
+  background: #252930;
+  display: inline-block;
+  color: #fff;
+  border-radius: 3px 3px 0 0;
+    box-shadow: 0px 0px 3px 1px #b0b0b0;
+
+}
+
+.panels {
+    box-shadow: 0 -6px 4px -4px rgba(0, 0, 0, .2);
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.panel {
+  display: none;
+  animation: fadein 0.8s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.panel-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.radio {
+  display: none;
+}
+
+#one:checked ~ .panels #one-panel,
+#two:checked ~ .panels #two-panel,
+#three:checked ~ .panels #three-panel {
+  display: block;
+}
+
+#one:checked ~ .tabs #one-tab,
+#two:checked ~ .tabs #two-tab,
+#three:checked ~ .tabs #three-tab {
+  background: #fff;
+  color: #000;
+  border-top: 3px solid #252930;
 }
