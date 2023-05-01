@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	<link rel="stylesheet" href="{% static 'itservice/css/reset.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'itservice/css/main.css' %}" type="text/css">
     <title>IT Service</title>
@@ -9,13 +10,14 @@
 <body>
 
 <div class="sidebar">
+    <div class="sidebar-name">IT Service</div>
     <ul>
-        <li><a href="{% url 'profile' %}">Profile</a></li>
-        <li><a href="{% url 'tasks' %}">Tasks</a></li>
-        <li><a href="{% url 'orders' %}">Work Orders</a></li>
-        <li><a href="{% url 'sales' %}">Sales</a></li>
-        <li><a href="{% url 'inventory' %}">Inventory</a></li>
-        <li><a href="{% url 'clients' %}">Clients</a></li>
+        <li><a href="{% url 'profile' %}">Профиль</a></li>
+        <li><a href="{% url 'tasks' %}">Задачи</a></li>
+        <li><a href="{% url 'orders' %}">Заказы</a></li>
+        <li><a href="{% url 'sales' %}">Продажи</a></li>
+        <li><a href="{% url 'inventory' %}">Склады</a></li>
+        <li><a href="{% url 'clients' %}">Клиенты</a></li>
     </ul>
 </div>
 <main class="main">
@@ -30,6 +32,5 @@
         {% endblock %}
     </div>
 </main>
-
 </body>
 </html>

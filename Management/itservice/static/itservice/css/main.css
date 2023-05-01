@@ -6,13 +6,14 @@ body {
 .header{
     box-shadow: 0 7px 7px -4px rgba(0, 0, 0, .2);
     height: 6%;
+    min-height: 50px;
     width: 100%;
     background-color: white;
     display: flex;
 }
 
 .header-name{
-    font-size: 30px;
+    font-size: 25px;
     padding-left: 20px;
     padding-top: 10px;
     font-weight: bold;
@@ -70,19 +71,36 @@ body {
 .tooltip:hover:before{
     visibility: visible;
     opacity:1;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 
 .sidebar{
     width: 7.5%;
-    min-height: 100vh;
+    height: 100%;
+    min-width: 145px;
+
     background-color: #252930;
     color: lightgray;
-    font-size: 20px;
+
+
+}
+
+.sidebar-name{
+    color:white;
+    font-size: 25px;
+    display: block;
+    line-height: 65px;
+    padding-left: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    border-top:1px solid rgba(255,255,255,.1);
+    border-bottom:1px solid black;
 
 }
 .sidebar ul a{
+    font-size: 20px;
     display: block;
     line-height: 65px;
     padding-left: 20px;
@@ -112,21 +130,19 @@ ul li:hover a{
 
 
 .warpper {
-    padding-top: 40px;
     display: flex;
     flex-direction: column;
-
 }
 
 .tab {
-  cursor: pointer;
-  padding: 10px 20px;
-  margin: 0 10px;
-  background: #252930;
-  display: inline-block;
-  color: #fff;
-  border-radius: 3px 3px 0 0;
-    box-shadow: 0px 0px 3px 1px #b0b0b0;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background: #252930;
+    display: inline-block;
+    color: #fff;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 0 3px 1px #b0b0b0;
 
 }
 
@@ -164,15 +180,37 @@ ul li:hover a{
 }
 
 #one:checked ~ .panels #one-panel,
-#two:checked ~ .panels #two-panel,
-#three:checked ~ .panels #three-panel {
+#two:checked ~ .panels #two-panel {
   display: block;
 }
 
 #one:checked ~ .tabs #one-tab,
-#two:checked ~ .tabs #two-tab,
-#three:checked ~ .tabs #three-tab {
+#two:checked ~ .tabs #two-tab{
   background: #fff;
   color: #000;
   border-top: 3px solid #252930;
+}
+
+.main-window{
+padding-top: 20px;
+}
+
+.btn{
+    margin: 0 auto;
+
+    display: block;
+    position: center;
+    font-size: 20px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    padding: 16px 32px;
+    cursor: pointer;
+    color: #252930;
+    border: 2px solid #252930;
+    border-radius: 6px;
+}
+
+.btn:hover {
+    background-color: #252930; /* Green */
+    color: white;
 }
