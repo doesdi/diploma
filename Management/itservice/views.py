@@ -1,33 +1,36 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from .models import *
 
 
-def main(request):
+def Main(request):
     return render(request, 'itservice/main.html')
 
 
-def profile(request):
+def Profile(request):
     return render(request, 'itservice/profile.html')
 
 
-def clients(request):
+def Clients(request):
     return render(request, 'itservice/clients.html')
 
 
-def inventory(request):
+def Inventory(request):
     return render(request, 'itservice/inventory.html')
 
 
-def orders(request):
+def Orders(request):
     return render(request, 'itservice/orders.html')
 
 
-def sales(request):
+def Sales(request):
     return render(request, 'itservice/sales.html')
 
 
-def tasks(request):
-    return render(request, 'itservice/tasks.html')
+def Tasks(request):
+
+    task = tasks.objects.all()
+    return render(request, 'itservice/tasks.html', {'task': task})
 
 
 

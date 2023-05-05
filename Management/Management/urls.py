@@ -20,12 +20,12 @@ from itservice import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.tasks, name="tasks"),
-    path('profile/', views.profile, name="profile"),
-    path('clients/', views.clients, name="clients"),
-    path('sales/', views.sales, name="sales"),
-    path('orders/', views.orders, name="orders"),
-    path('inventory/', views.inventory, name="inventory"),
-    path('tasks/', views.tasks, name="tasks"),
+    path('', views.Tasks, name="tasks"),
+    path('profile/', views.Profile, name="profile"),
+    path('clients/', views.Clients, name="clients"),
+    path('sales/', views.Sales, name="sales"),
+    path('orders/', views.Orders, name="orders"),
+    path('inventory/', views.Inventory, name="inventory"),
+    path('tasks/', views.Tasks, name="tasks"),
 
 ]
