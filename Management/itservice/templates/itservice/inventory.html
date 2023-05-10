@@ -10,5 +10,53 @@
  </div>
 {% endblock %}
 {% block content1 %}
-Inventory
+<div class="main-window">
+    <button class="btn" id="open">Добавить устройство</button>
+
+    <div class="modal" id="modal_task">
+         <div class="modal_box">
+             <button class="btn" id="close">x</button>
+             <h1>Добавление устройства</h1>
+              <form action="{% url 'inventory' %}" method="post">
+             {% csrf_token %}
+             {{form.non_field_errors}}
+             {{form.as_p}}
+             <button type="submit">Добавить</button>
+           </form>
+         </div>
+    </div>
+<div class="ok"></div>
+    <div class="warpper">
+        <div class="panels">
+            <div class="panel-title">Склад</div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Категория</th>
+                    <th>Артикул</th>
+                    <th>Название</th>
+                    <th>Цвет</th>
+                    <th>Состояние</th>
+                    <th>Описание</th>
+                    <th>Клиент</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                {% for i in invent%}
+                <tr>
+                    <td>{{i.inventory_type}}</td>
+                    <td>{{i.inventory_article}}</td>
+                    <td>{{i.inventory_name}}</td>
+                    <td>{{i.inventory_color}}</td>
+                    <td>{{i.inventory_condition}}</td>
+                    <td>{{i.inventory_description}}</td>
+                    <td>{{i.inventory_client}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

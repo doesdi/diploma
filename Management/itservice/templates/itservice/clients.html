@@ -9,5 +9,53 @@
  </div>
 {% endblock %}
 {% block content1 %}
-Clients
+
+<div class="main-window">
+    <button class="btn" id="open">Добавить клиента</button>
+
+    <div class="modal" id="modal_task">
+         <div class="modal_box">
+             <button class="btn" id="close">x</button>
+             <h1>Добавление клиента</h1>
+             <form action="{% url 'clients' %}" method="post">
+             {% csrf_token %}
+             {{form.non_field_errors}}
+             {{form.as_p}}
+             <button type="submit">Добавить</button>
+           </form>
+         </div>
+    </div>
+<div class="ok"></div>
+    <div class="warpper">
+        <div class="panels">
+            <div class="panel-title">Клиенты</div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Тип клиента</th>
+                    <th>Имя клиента</th>
+                    <th>Номер телефона</th>
+                    <th>Email</th>
+                    <th>Адрес</th>
+                    <th>Откуда клиент узнал о нас?</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                {% for c in clients%}
+                <tr>
+                        <td><a href="{% url 'clients' %}">{{c.client_type}}</a></td>
+                        <td>{{c.client_name}}</td>
+                        <td>{{c.client_phone}}</td>
+                        <td>{{c.client_email}}</td>
+                        <td>{{c.client_address}}</td>
+                        <td>{{c.client_found}}</td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

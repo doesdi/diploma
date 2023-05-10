@@ -11,11 +11,11 @@ class role(models.Model):
         return self.role_name
 
 
-# class users(AbstractUser):
-#     user_phone = models.CharField(max_length=40, verbose_name="Номер телефона")
-#     user_note = models.CharField(max_length=50, verbose_name="Примечание")
-#     user_time = models.DateField(default=date.today, verbose_name="Дата начала работы")
-#     user_role = models.ForeignKey(role, on_delete=models.PROTECT, verbose_name="Должность")
+class users(AbstractUser):
+    user_phone = models.CharField(max_length=40, verbose_name="Номер телефона")
+    user_note = models.CharField(max_length=50, verbose_name="Примечание")
+    user_time = models.DateField(default=date.today, verbose_name="Дата начала работы")
+    user_photo = models.ImageField(upload_to="photos/%y/%m/%d/", verbose_name="Фото сотрудника")
 
 
 class tasks(models.Model):
@@ -24,22 +24,20 @@ class tasks(models.Model):
     task_time = models.DateTimeField(default=datetime.now, verbose_name="Крайний срок")
     task_active = models.BooleanField(default=True, verbose_name="Активна")
 
-    # task_user = models.ForeignKey(users, on_delete=models.PROTECT, verbose_name="Работник")
-
     def __str__(self):
         return self.task_name
 
 
 class client(models.Model):
     Type = (
-        ('компания', 'Компания'),
-        ('физ.Лицо', 'Физ.Лицо')
+        ('Компания', 'Компания'),
+        ('Физ.Лицо', 'Физ.Лицо')
     )
 
     Found = (
-        ('знакомые', 'Знакомые'),
-        ('интернет', 'Интернет'),
-        ('реклама', 'Реклама')
+        ('Знакомые', 'Знакомые'),
+        ('Интернет', 'Интернет'),
+        ('Реклама', 'Реклама')
     )
 
     client_type = models.CharField(max_length=15, choices=Type,
@@ -69,11 +67,11 @@ class orders(models.Model):
 
 class inventory(models.Model):
     Type = (
-        ('устройство', 'Устройство'),
-        ('запчасти', 'Запчасти')
+        ('Устройство', 'Устройство'),
+        ('Запчасти', 'Запчасти')
     )
     inventory_type = models.CharField(max_length=15, choices=Type,
-                                      default='устройство', verbose_name="Категория")
+                                      default='Устройство', verbose_name="Категория")
     inventory_article = models.IntegerField(verbose_name="Артикул")
     inventory_name = models.CharField(max_length=50, verbose_name="Название")
     inventory_color = models.CharField(max_length=40, verbose_name="Цвет")
@@ -89,7 +87,7 @@ class sales(models.Model):
     sales_name = models.CharField(max_length=100, verbose_name="Наименование работы")
     sales_comment = models.CharField(max_length=100, verbose_name="Комментарий")
     sales_price = models.CharField(max_length=100, verbose_name="Цена")
-    sales_time = models.DateTimeField(default=date.today, verbose_name="Время продажи")
+    sales_time = models.DateTimeField(default=datetime.today, verbose_name="Время продажи")
     sales_client = models.ForeignKey(client, on_delete=models.PROTECT)
 
     def __str__(self):

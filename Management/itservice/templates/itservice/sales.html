@@ -9,5 +9,50 @@
  </div>
 {% endblock %}
 {% block content1 %}
-Sales
+
+<div class="main-window">
+    <button class="btn" id="open">Добавить продажу</button>
+
+    <div class="modal" id="modal_task">
+         <div class="modal_box">
+             <button class="btn" id="close">x</button>
+             <h1>Добавление продажи</h1>
+            <form action="{% url 'sales' %}" method="post">
+             {% csrf_token %}
+             {{form.non_field_errors}}
+             {{form.as_p}}
+             <button type="submit">Добавить</button>
+           </form>
+         </div>
+    </div>
+<div class="ok"></div>
+    <div class="warpper">
+        <div class="panels">
+            <div class="panel-title">Продажи</div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Наименование работы</th>
+                    <th>Комментарий</th>
+                    <th>Цена</th>
+                    <th>Время продажи</th>
+                    <th>Клиент</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                {% for s in sale%}
+                <tr>
+                    <td>{{s.sales_name}}</td>
+                    <td>{{s.sales_comment}}</td>
+                    <td>{{s.sales_price}}</td>
+                    <td>{{s.sales_time}}</td>
+                    <td>{{s.sales_client}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -16,7 +16,7 @@
         <li><a href="{% url 'tasks' %}">Задачи</a></li>
         <li><a href="{% url 'orders' %}">Заказы</a></li>
         <li><a href="{% url 'sales' %}">Продажи</a></li>
-        <li><a href="{% url 'inventory' %}">Склады</a></li>
+        <li><a href="{% url 'inventory' %}">Склад</a></li>
         <li><a href="{% url 'clients' %}">Клиенты</a></li>
     </ul>
 </div>
@@ -32,7 +32,21 @@
         {% endblock %}
     </div>
 </main>
+<script language="JavaScript">
+    document.getElementById("open").addEventListener("click",function () {
+    document.getElementById("modal_task").classList.add("open")
+    })
+    document.getElementById("close").addEventListener("click",function () {
+    document.getElementById("modal_task").classList.remove("open")
+    })
 
+    window.addEventListener('keydown', (e) => {
+        if (e.key === "Escape"){
+            document.getElementById("modal_task").classList.remove("open")
+        }
+    })
+
+</script>
 
 
 </body>

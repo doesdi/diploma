@@ -17,12 +17,13 @@
          <div class="modal_box">
              <button class="btn" id="close">x</button>
              <h1>Добавление задачи</h1>
-             <p>The free trial period is almost over
-                 The trial period ends in 1 day
-                 your subscription till the trial
-                 period ends and get another 7 days of
-                 using RemOnline for free
-            </p>
+             <form action="{% url 'tasks' %}" method="post">
+                 {% csrf_token %}
+                 {{form.non_field_errors}}
+                 {{form.as_p}}
+                 <button type="submit">Добавить</button>
+             </form>
+
          </div>
     </div>
 
@@ -40,6 +41,7 @@
             <div class="panel" id="one-panel">
                 <div class="panel-title">Задачи в разработке</div>
                 {% for p in task%}
+                 {% if p.task_active == 1 %}
                 <a href="{{ p.get_absolute_url }}">
                     <div>
                         <label class="toggler-wrapper ">
@@ -55,28 +57,35 @@
                         <p class="time">Крайний срок: {{p.task_time}}</p>
                     </li>
                 </a>
+                 {% else %}
+                {% endif %}
                 {% endfor %}
             </div>
             <div class="panel" id="two-panel">
                 <div class="panel-title">Выполненные задачи</div>
-                <p>Content2</p>
+                {% for p in task%}
+                 {% if p.task_active == 0 %}
+                <a href="{{ p.get_absolute_url }}">
+                    <div>
+                        <label class="toggler-wrapper ">
+                            <input type="checkbox" >
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <li class="task-inf">
+                        <h1>{{p.task_name}}</h1>
+                        <p class="desc">{{p.task_description}}</p>
+                        <p class="time">Крайний срок: {{p.task_time}}</p>
+                    </li>
+                </a>
+                 {% else %}
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
-<script language="JavaScript">
-    document.getElementById("open").addEventListener("click",function () {
-    document.getElementById("modal_task").classList.add("open")
-    })
-    document.getElementById("close").addEventListener("click",function () {
-    document.getElementById("modal_task").classList.remove("open")
-    })
 
-    window.addEventListener('keydown', (e) => {
-        if (e.key === "Escape"){
-            document.getElementById("modal_task").classList.remove("open")
-        }
-    })
-
-</script>
 {% endblock %}
