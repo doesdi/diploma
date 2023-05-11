@@ -12,10 +12,17 @@ class role(models.Model):
 
 
 class users(AbstractUser):
+    Type = (
+        ('Администратор', 'Администратор'),
+        ('Техник', 'Техник'),
+        ('Программист', 'Программист'),
+        ('Менеджер', 'Менеджер')
+    )
     user_phone = models.CharField(max_length=40, verbose_name="Номер телефона")
     user_note = models.CharField(max_length=50, verbose_name="Примечание")
     user_time = models.DateField(default=date.today, verbose_name="Дата начала работы")
     user_photo = models.ImageField(upload_to="photos/%y/%m/%d/", verbose_name="Фото сотрудника")
+    user_role = models.CharField(max_length=50, choices=Type, default='Программист', verbose_name="Должность")
 
 
 class tasks(models.Model):

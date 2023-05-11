@@ -8,8 +8,33 @@
     Здесь вы можете отредактировать личную информацию.">Помощь</span>
  </div>
 {% endblock %}
+
 {% block content1 %}
-
-{{ auth_user.username }}
-
+<div class="profile">
+        <div class="profile-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="profile-title">
+                        {{ user }}
+                    </div>
+                    <figure>
+                        {% if user.user_photo %}
+                        <a href="/media/{{user.user_photo}}"><img class="img" src="{{user.user_photo.url}}"></a>
+                        {% endif %}
+                    </figure>
+                </div>
+                <div>
+                    <ul class="profile-text">
+                        <li><p>Никнейм:</p> {{ user.username }}</li>
+                        <li><p>Имя и фамилия:</p> {{ user.get_full_name }}</li>
+                        <li><p>Заходил:</p> {{ user.last_login }}</li>
+                        <li><p>Номер телефона:</p> {{ user.user_phone }}</li>
+                        <li><p>О себе:</p> {{ user.user_note }}</li>
+                        <li><p>Должность:</p> {{ user.user_role }}</li>
+                    </ul>
+                    <button class="btn"><a href="{% url 'profile_edit' %}">Редактировать профиль</a></button>
+                </div>
+            </div>
+        </div>
+</div>
 {% endblock %}

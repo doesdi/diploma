@@ -2,6 +2,38 @@ from django import forms
 from .models import *
 
 
+class ProfileFrom(forms.ModelForm):
+    class Meta:
+        model = users
+        fields = ['username', 'first_name', 'last_name', 'email',
+                  'user_phone', 'user_note', 'user_time', 'last_login', 'user_photo']
+
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    """
+    Форма обновления данных профиля пользователя
+    """
+    class Meta:
+        model = users
+        fields = ['username', 'first_name', 'last_name', 'email',
+                  'user_phone', 'user_note', 'user_time', 'last_login', 'user_photo']
+
+    def __init__(self, *args, **kwargs):
+        """
+        Обновление стилей формы обновления
+        """
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control',
+                'autocomplete': 'off'
+            })
+
+
+
+
 class AddTaskFrom(forms.ModelForm):
     class Meta:
         model = tasks

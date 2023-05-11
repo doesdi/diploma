@@ -53,7 +53,7 @@
                     </div>
                     <li class="task-inf">
                         <h1>{{p.task_name}}</h1>
-                        <p class="desc">{{p.task_description}}</p>
+                        <p class="desc">{{p.task_description|linebreaks|truncatewords:25}}</p>
                         <p class="time">Крайний срок: {{p.task_time}}</p>
                     </li>
                 </a>

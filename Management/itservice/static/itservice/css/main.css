@@ -102,6 +102,9 @@ body {
     border-bottom:1px solid black;
 
 }
+
+.sidebar-name p{
+}
 .sidebar ul a{
     font-size: 20px;
     display: block;
@@ -200,6 +203,8 @@ ul li:hover a{
 }
 
 .btn{
+    background-color: transparent;
+    width: 300px;
     margin: 0 auto;
     display: block;
     position: center;
@@ -214,7 +219,7 @@ ul li:hover a{
 }
 
 .btn:hover {
-    background-color: #252930; /* Green */
+    background-color: #252930;
     color: white;
 }
 
@@ -432,5 +437,66 @@ ul li:hover a{
 .ok{
     height: 45px;
 }
+
+.profile{
+    margin-top: 50px;
+    display: block;
+    list-style-type: none;
+    color: black;
+    margin-bottom: 30px;
+    font-size: 25px;
+    padding: 20px 20px 20px 20px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 4px black;
+    border-radius: 10px;
+    transition: all .3s ease-out;
+}
+
+.profile-title{
+    font-size: 30px;
+    font-weight: bold;
+
+    margin-bottom: 16px;
+}
+
+.input:focus{
+    border: 1px solid lightslategrey;
+    border-radius: 5px;
+}
+.input{
+    margin-bottom: 16px;
+    padding-left: 5px;
+    color: lightslategrey;
+    /*border: 2px solid lightslategrey;*/
+    /*border-radius: 5px;*/
+}
+
+.profile .photo_url{
+    color:maroon;
+    border-bottom: 2px solid maroon;
+}
+
+.img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-text{
+    display: grid;
+}
+.profile-text li{
+    display: inline-flex;
+}
+.profile-text p{
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+
+
+
+
+
 
 

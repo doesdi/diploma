@@ -1,0 +1,58 @@
+{% extends 'itservice/main.html' %}
+{% block content %}
+<div class="header-name">
+   Редактирование личных данных
+</div>
+ <div class="help">
+    <span class="tooltip" data-title="Это ваш профиль.
+    Здесь вы можете отредактировать личную информацию.">Помощь</span>
+ </div>
+{% endblock %}
+
+{% block content1 %}
+<div class="profile">
+         <div class="profile-title">Изменение профиля</div>
+      <form method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+          <p>
+              <label for="id_username">Имя пользователя:</label>
+              <input class="input" type="text" name="username" value="{{user.username}}"
+                     maxlength="150" required="" id="id_username">
+          </p>
+          <p>
+              <label for="id_first_name">Имя:</label>
+              <input class="input" type="text" name="first_name" value="{{user.first_name}}" maxlength="150" id="id_first_name">
+          </p>
+          <p>
+              <label for="id_last_name">Фамилия:</label>
+              <input class="input" type="text" name="last_name" value="{{user.last_name}}" maxlength="150" id="id_last_name">
+          </p>
+          <p>
+              <label for="id_email">Адрес электронной почты:</label>
+              <input class="input" type="email" name="email" value="{{user.email}}" maxlength="254" id="id_email">
+          </p>
+          <p>
+              <label for="id_user_phone">Номер телефона:</label>
+              <input class="input" type="text" name="user_phone" value="{{user.user_phone}}" maxlength="40" required="" id="id_user_phone">
+          </p>
+<!--          <p>-->
+<!--              <label for="id_user_note">Примечание:</label>-->
+<!--              <input class="input" type="text" name="user_note" value="{{user.user_note}}" maxlength="50" required="" id="id_user_note">-->
+<!--          </p>-->
+<!--          <p>-->
+<!--              <label for="id_user_time">Дата начала работы:</label>-->
+<!--              <input class="input" type="date" name="user_time" value="{{user.user_time}}" required="" id="id_user_time">-->
+
+<!--          </p>-->
+          <p>
+              <label for="id_user_photo">Фото сотрудника на данный момент:</label>
+              <a class="photo_url" href="/media/{{user.user_photo}}">{{user.user_photo}}</a><br>
+              Изменить:
+              <input  type="file" name="user_photo" accept="image/*" id="id_user_photo">
+          </p>
+
+<!--{{ user_form.as_p }}-->
+         <button type="submit" class="btn">Подтвердить изменение профиля</button>
+      </form>
+</div>
+{% endblock %}
