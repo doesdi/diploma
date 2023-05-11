@@ -6,7 +6,7 @@ class ProfileFrom(forms.ModelForm):
     class Meta:
         model = users
         fields = ['username', 'first_name', 'last_name', 'email',
-                  'user_phone', 'user_note', 'user_time', 'last_login', 'user_photo']
+                  'user_phone', 'user_photo']
 
 
 
@@ -17,7 +17,7 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = users
         fields = ['username', 'first_name', 'last_name', 'email',
-                  'user_phone', 'user_note', 'user_time', 'last_login', 'user_photo']
+                  'user_phone',  'user_photo']
 
     def __init__(self, *args, **kwargs):
         """
