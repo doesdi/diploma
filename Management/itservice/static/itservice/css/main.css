@@ -78,11 +78,10 @@ body {
 
 
 .sidebar{
-    width: 7.5%;
+    width: 145px;
     height: 100%;
-
+    position: fixed;
     min-width: 145px;
-
     background-color: #252930;
     color: lightgray;
 
@@ -122,14 +121,14 @@ ul li:hover a{
 }
 
 .main{
+    margin-left:145px;
     display: inline-block;
-    width: 92.5%;
+    width: 100%;
     min-height: 100vh;
 
 }
 
 .main-form{
-    height: 94%;
     width: 100%;
 }
 
@@ -257,6 +256,13 @@ ul li:hover a{
     display: flex;
     justify-content: right;
     color: #eb4f37;
+}
+
+.time_2{
+    padding-top: 10px;
+    display: flex;
+    justify-content: right;
+    color: #44cc66;
 }
 
 .toggler-wrapper {
@@ -393,10 +399,24 @@ ul li:hover a{
 }
 
 .modal_box h1{
+    margin-right: 30px;
+    margin-bottom: 20px;
     font-weight: bold;
     font-size: 40px;
 }
 
+.modal_box p{
+
+    font-weight: bold;
+    font-size: 25px;
+}
+
+
+
+
+.modal_header{
+    display: inline-flex;
+}
 
 .table {
 	width: 100%;
@@ -479,6 +499,8 @@ ul li:hover a{
 
 .img{
     border-radius: 10px;
+    max-height: 200px;
+    max-width: 200px;
     margin-bottom: 10px;
 }
 
@@ -491,6 +513,86 @@ ul li:hover a{
 .profile-text p{
     font-weight: bold;
     margin-right: 10px;
+}
+
+.noauth{
+    margin-top: 150px;
+    height: 80%;
+    width: 90%;
+    margin-left: 100px;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.but{
+    background-color: transparent;
+    width: 350px;
+    text-align: center;
+    font-size: 30px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    padding: 16px 32px;
+    cursor: pointer;
+    color: #252930;
+    border: 2px solid #252930;
+    border-radius: 6px;
+}
+
+.but:hover {
+    background-color: #252930;
+    color: white;
+}
+
+.noauth span{
+    font: 700 4em/1 "Oswald", sans-serif;
+  	letter-spacing: 0;
+  	padding: .25em 0 .325em;
+    display: block;
+    margin: 0 auto;
+  	text-shadow: 0 0 80px rgba(255,255,255,.5);
+
+/* Clip Background Image */
+
+	  background: url("/media/photos/23/05/11/2.jpg") repeat-y;
+	  -webkit-background-clip: text;
+
+
+/* Animate Background Image */
+
+	  -webkit-text-fill-color: transparent;
+	  -webkit-animation: aitf 40s linear infinite;
+
+/* Activate hardware acceleration for smoother animations */
+
+	  -webkit-transform: translate3d(0,0,0);
+	  -webkit-backface-visibility: hidden;
+}
+@-webkit-keyframes aitf {
+	0% { background-position: 0% 50%; }
+	100% { background-position: 100% 50%; }
+}
+
+
+.but_close{
+    text-align: center;
+    right: 0;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: transparent;
+    width: 100px;
+    height: 40px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    color: #252930;
+    border: 2px solid #252930;
+    border-radius: 6px;
+
+}
+
+.but_close:hover {
+    background-color: #252930;
+    color: white;
 }
 
 

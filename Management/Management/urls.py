@@ -30,8 +30,12 @@ urlpatterns = [
     path('clients/', views.Clients, name="clients"),
     path('sales/', views.Sales, name="sales"),
     path('orders/', views.Orders, name="orders"),
+    path('orders-change/', views.Change_Order_st, name="orders-change"),
     path('inventory/', views.Inventory, name="inventory"),
     path('tasks/', views.Tasks, name="tasks"),
+    path('tasks-change/', views.Change_Task_st, name="tasks-change"),
+    path('applications/', views.Аpplications, name="applications"),
+    path('staff/', views.Staff, name="staff")
 
 ]
 

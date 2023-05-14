@@ -10,20 +10,49 @@
 
 {% endblock %}
 {% block content1 %}
+<script>
+    const Change_task_status = (task_id)=> {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", "{% url 'tasks-change' %}" , false);
+        xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xmlHttp.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+        console.log(xmlHttp);
+        xmlHttp.send(`{"task_id": ${task_id}}`);
+        window.location.reload()
+    }
+</script>
+
+
 <div class="main-window">
     <button class="btn" id="open">Добавить задачу</button>
-
     <div class="modal" id="modal_task">
          <div class="modal_box">
-             <button class="btn" id="close">x</button>
+             <div class="modal_header">
              <h1>Добавление задачи</h1>
+             <button class="but_close" id="close">Закрыть</button>
+             </div>
              <form action="{% url 'tasks' %}" method="post">
                  {% csrf_token %}
                  {{form.non_field_errors}}
-                 {{form.as_p}}
-                 <button type="submit">Добавить</button>
+                 <p>
+                     <label for="id_task_name">Название задачи:</label>
+                     <input class ="input" type="text" name="task_name" maxlength="50" required="" id="id_task_name">
+                 </p>
+                 <p>
+                     <label for="id_task_description">Описание задачи:</label>
+                     <input class ="input" type="text" name="task_description" maxlength="1000" required="" id="id_task_description">
+                 </p>
+                 <p>
+                     <label for="id_task_time">Крайний срок:</label>
+                     <input class ="input" type="datetime-local" name="task_time" value="" required="" id="id_task_time"><input type="hidden" name="initial-task_time" value="2023-05-12 17:26:32" id="initial-id_task_time">
+                 </p>
+                 <p>
+                     <label for="id_task_active">Активна:</label>
+                     <input class ="input" type="checkbox" name="task_active" id="id_task_active" checked="">
+                 </p>
+<!--                 {{form.as_p}}-->
+                 <button class="but" type="submit">Добавить</button>
              </form>
-
          </div>
     </div>
 
@@ -45,7 +74,11 @@
                 <a href="{{ p.get_absolute_url }}">
                     <div>
                         <label class="toggler-wrapper ">
-                            <input type="checkbox" >
+                            {% if p.task_active %}
+                            <input type="checkbox" onclick="Change_task_status({{p.id}})"/>
+                            {% else %}
+                            <input type="checkbox" onclick="Change_task_status({{p.id}})" checked/>
+                            {%endif%}
                             <div class="toggler-slider">
                                 <div class="toggler-knob"></div>
                             </div>
@@ -68,7 +101,11 @@
                 <a href="{{ p.get_absolute_url }}">
                     <div>
                         <label class="toggler-wrapper ">
-                            <input type="checkbox" >
+                             {% if p.task_active %}
+                            <input type="checkbox" onclick="Change_task_status({{p.id}})"/>
+                            {% else%}
+                            <input type="checkbox" onclick="Change_task_status({{p.id}})" checked/>
+                            {%endif%}
                             <div class="toggler-slider">
                                 <div class="toggler-knob"></div>
                             </div>
@@ -76,8 +113,12 @@
                     </div>
                     <li class="task-inf">
                         <h1>{{p.task_name}}</h1>
-                        <p class="desc">{{p.task_description}}</p>
+                        <p class="desc">{{p.task_description|linebreaks|truncatewords:25}}</p>
+                        {% if p.task_active %}
                         <p class="time">Крайний срок: {{p.task_time}}</p>
+                        {% else%}
+                        <p class="time_2">Крайний срок: {{p.task_time}}</p>
+                        {%endif%}
                     </li>
                 </a>
                  {% else %}

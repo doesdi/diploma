@@ -136,6 +136,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.mail.ru'
+# EMAIL_HOST_USER = 'itservicediplom1@mail.ru'
+# EMAIL_HOST_PASSWORD = 'itservice533'
+# EMAIL_PORT = 465
+
+
 
 
 

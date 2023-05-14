@@ -9,20 +9,13 @@ class ProfileFrom(forms.ModelForm):
                   'user_phone', 'user_photo']
 
 
-
 class ProfileUpdateForm(forms.ModelForm):
-    """
-    Форма обновления данных профиля пользователя
-    """
     class Meta:
         model = users
         fields = ['username', 'first_name', 'last_name', 'email',
                   'user_phone',  'user_photo']
 
     def __init__(self, *args, **kwargs):
-        """
-        Обновление стилей формы обновления
-        """
         super().__init__(*args, **kwargs)
 
         for field in self.fields:
@@ -30,8 +23,6 @@ class ProfileUpdateForm(forms.ModelForm):
                 'class': 'form-control',
                 'autocomplete': 'off'
             })
-
-
 
 
 class AddTaskFrom(forms.ModelForm):

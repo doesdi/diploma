@@ -11,18 +11,55 @@
 {% endblock %}
 
 {% block content1 %}
+<script>
+    const Change_order_status = (order_id)=> {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", "{% url 'orders-change' %}" , false);
+        xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xmlHttp.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+        console.log(xmlHttp);
+        xmlHttp.send(`{"order_id": ${order_id}}`);
+        window.location.reload()
+    }
+</script>
+
 <div class="main-window">
   <button class="btn" id="open">Добавить заказ</button>
 
     <div class="modal" id="modal_task">
          <div class="modal_box">
-           <button class="btn" id="close">x</button>
-           <h1>Добавление заказа</h1>
+           <div class="modal_header">
+             <h1>Добавление заказа</h1>
+             <button class="but_close" id="close">Закрыть</button>
+             </div>
            <form action="{% url 'orders' %}" method="post">
              {% csrf_token %}
              {{form.non_field_errors}}
-             {{form.as_p}}
-             <button type="submit">Добавить</button>
+             <p>
+               <label for="id_order_name">Название заказа:</label>
+               <input class="input" type="text" name="order_name" maxlength="50" required="" id="id_order_name">
+             </p>
+             <p>
+               <label for="id_order_description">Требования к заказу:</label>
+               <input class="input" type="text" name="order_description" maxlength="1000" required="" id="id_order_description">
+             </p>
+             <p>
+               <label for="id_order_time">Крайний срок:</label>
+               <input class="input" type="datetime-local" name="order_time" value="" required="" id="id_order_time"><input type="hidden" name="initial-order_time" value="2023-05-12 17:33:18" id="initial-id_order_time">
+             </p>
+             <p>
+               <label for="id_order_price">Ориентировочная стоимость:</label>
+               <input class="input" type="number" name="order_price" required="" id="id_order_price">
+             </p>
+             <p>
+               <label >Клиент:</label>
+               {{form.order_client}}
+             </p>
+             <p>
+               <label for="id_order_active">Активна:</label>
+               <input class="input" type="checkbox" name="order_active" id="id_order_active" checked="">
+             </p>
+             <button class ="but" type="submit">Добавить</button>
            </form>
          </div>
     </div>
@@ -58,7 +95,11 @@
           {% for o in order%}
           {% if o.order_active == 1 %}
           <tr>
-            <td>{{o.order_active}}</td>
+            <td>{% if o.order_active %}
+              <input type="checkbox" onclick="Change_order_status({{o.id}})"/>
+              {% else%}
+              <input type="checkbox" onclick="Change_order_status({{o.id}})" checked/>
+              {%endif%}</td>
             <td>{{o.order_name}}</td>
             <td>{{o.order_description}}</td>
             <td>{{o.order_time}}</td>
@@ -90,7 +131,11 @@
         {% for o in order%}
         {% if o.order_active == 0 %}
         <tr>
-          <td>{{o.order_active}}</td>
+            <td>{% if o.order_active %}
+              <input type="checkbox" onclick="Change_order_status({{o.id}})"/>
+              {% else%}
+              <input type="checkbox" onclick="Change_order_status({{o.id}})" checked/>
+              {%endif%}</td>
           <td>{{o.order_name}}</td>
           <td>{{o.order_description}}</td>
           <td>{{o.order_time}}</td>

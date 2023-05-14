@@ -61,6 +61,7 @@ class client(models.Model):
 
 
 class orders(models.Model):
+
     order_name = models.CharField(max_length=50, verbose_name="Название заказа")
     order_description = models.CharField(max_length=1000, verbose_name="Требования к заказу")
     order_time = models.DateTimeField(default=datetime.now, verbose_name="Крайний срок")

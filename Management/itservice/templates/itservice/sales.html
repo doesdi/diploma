@@ -15,13 +15,35 @@
 
     <div class="modal" id="modal_task">
          <div class="modal_box">
-             <button class="btn" id="close">x</button>
+            <div class="modal_header">
              <h1>Добавление продажи</h1>
+             <button class="but_close" id="close">Закрыть</button>
+             </div>
             <form action="{% url 'sales' %}" method="post">
              {% csrf_token %}
              {{form.non_field_errors}}
-             {{form.as_p}}
-             <button type="submit">Добавить</button>
+                <p>
+                    <label for="id_sales_name">Наименование работы:</label>
+                    <input class="input" type="text" name="sales_name" maxlength="100" required="" id="id_sales_name">
+                </p>
+                <p>
+                    <label for="id_sales_comment">Комментарий:</label>
+                    <input class="input" type="text" name="sales_comment" maxlength="100" required="" id="id_sales_comment">
+                </p>
+                <p>
+                    <label for="id_sales_price">Цена:</label>
+                    <input class="input" type="text" name="sales_price" maxlength="100" required="" id="id_sales_price">
+                </p>
+                <p>
+                    <label for="id_sales_time">Время продажи:</label>
+                    <input class="input" type="datetime-local" name="sales_time" value="" required="" id="id_sales_time"><input type="hidden" name="initial-sales_time" value="2023-05-12 18:06:18" id="initial-id_sales_time">
+                </p>
+                <p>
+                    <label>Клиент:</label>
+                    {{form.sales_client}}
+                </p>
+<!--             {{form.as_p}}-->
+             <button class="but" type="submit">Добавить</button>
            </form>
          </div>
     </div>
@@ -42,13 +64,15 @@
                 </thead>
                 <tbody>
                 {% for s in sale%}
-                <tr>
-                    <td>{{s.sales_name}}</td>
-                    <td>{{s.sales_comment}}</td>
-                    <td>{{s.sales_price}}</td>
-                    <td>{{s.sales_time}}</td>
-                    <td>{{s.sales_client}}</td>
-                </tr>
+                <a href="{% url 'sales' %}">
+                    <tr>
+                        <td>{{s.sales_name}}</td>
+                        <td>{{s.sales_comment}}</td>
+                        <td>{{s.sales_price}}</td>
+                        <td>{{s.sales_time}}</td>
+                        <td>{{s.sales_client}}</td>
+                    </tr>
+                </a>
                 {% endfor %}
                 </tbody>
             </table>

@@ -3,9 +3,19 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView
+from django.core.mail import EmailMessage
+
 
 from .forms import *
 from .models import *
+
+
+import json
+from django.core.mail import send_mail
+# import smtplib
+# smtpObj = smtplib.SMTP('smtp.mail.ru', 465)
+# smtpObj.starttls()
+# smtpObj.login('itservicediplom1@mail.ru', 'mmdSrKEW3YUUu2YpgysL')
 
 
 def Main(request):
@@ -26,9 +36,6 @@ def Profile(request):
 
 
 class ProfileUpdateView(UpdateView):
-    """
-    Представление для редактирования профиля
-    """
     model = users
     form_class = ProfileUpdateForm
     template_name = 'itservice/profile_edit.html'
@@ -113,8 +120,45 @@ def Tasks(request):
         form = AddTaskFrom(request.POST)
         if form.is_valid():
             form.save()
+            # smtpObj.sendmail("itservicediplom1@mail.ru", "samoilovzeka31@mail.ru", "go to bed!")
+            # send_mail(
+            #     "Задача создана",
+            #     "Here is the message.",
+            #     "from@example.com",
+            #     ["to@example.com"],
+            #     fail_silently=False,
+            # )
+            # print(1)
+            # email = EmailMessage('Новая задача', 'Афигеть', to=['samoilovzeka31@mail.ru'])
+            # print(2)
+            # email.send()
+            # print(3)
             return redirect('tasks')
     else:
         form = AddTaskFrom()
     task = tasks.objects.all()
     return render(request, 'itservice/tasks.html', {'task': task, 'form': form})
+
+
+def Change_Task_st(request):
+    body = json.loads(request.body)
+    task = tasks.objects.get(pk=body["task_id"])
+    task.task_active = not task.task_active
+    task.save()
+    return HttpResponse("true")
+
+
+def Change_Order_st(request):
+    body = json.loads(request.body)
+    order = orders.objects.get(pk=body["order_id"])
+    order.order_active = not order.order_active
+    order.save()
+    return HttpResponse("true")
+
+
+def Аpplications(request):
+    return render(request, 'itservice/applications.html')
+
+
+def Staff(request):
+    return render(request, 'itservice/staff.html')

@@ -13,16 +13,28 @@
     <div class="sidebar-name">
         IT Service
     </div>
+    {% if user.is_authenticated %}
     <ul>
         <li><a href="{% url 'profile' %}">Профиль</a></li>
         <li><a href="{% url 'tasks' %}">Задачи</a></li>
         <li><a href="{% url 'orders' %}">Заказы</a></li>
+        <li><a href="{% url 'applications' %}">Заявки</a></li>
         <li><a href="{% url 'sales' %}">Продажи</a></li>
         <li><a href="{% url 'inventory' %}">Склад</a></li>
         <li><a href="{% url 'clients' %}">Клиенты</a></li>
+        {% if user.user_role == 'Администратор'%}
+        <li><a href="{% url 'staff' %}">Сотрудники</a></li>
+        <li><a href="{% url 'admin:index' %}">Админ</a></li>
+        {% elif  ser.user_role == 'Менеджер' %}
+        <li><a href="{% url 'staff' %}">Сотрудники</a></li>
+        {%endif%}
     </ul>
+    {% else %}
+
+    {%endif%}
 </div>
 <main class="main">
+    {% if user.is_authenticated %}
     <div class="header">
        {% block content %}
 
@@ -33,8 +45,16 @@
 
         {% endblock %}
     </div>
+    {% else %}
+    <div class="noauth">
+        <span>Вы не авторизованны</span>
+        <a class="but" href="#">Авторизоваться</a>
+    </div>
+    {%endif%}
 </main>
 <script language="JavaScript">
+
+
     document.getElementById("open").addEventListener("click",function () {
     document.getElementById("modal_task").classList.add("open")
     })
@@ -47,6 +67,8 @@
             document.getElementById("modal_task").classList.remove("open")
         }
     })
+
+
 
 </script>
 
