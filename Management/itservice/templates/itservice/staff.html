@@ -9,5 +9,46 @@
  </div>
 {% endblock %}
 {% block content1 %}
-<div class="main-window"></div>
+<div class="main-window">
+    <button class="btn" id=""><a href="{% url 'staff-add' %}">Добавить сотрудника</a></button>
+<div class="ok"></div>
+<div class="warpper">
+  <div class="panels">
+      <div class="panel-title">Сотрудники</div>
+      <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Должность</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Примечание</th>
+            <th>Логин</th>
+            <th>Админ</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for u in us%}
+        <tr>
+            <td>{{u.id}}</td>
+            <td>{{u.user_role}}</td>
+            <td>{{u.first_name}}</td>
+            <td>{{u.last_name}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.user_phone}}</td>
+            <td>{{u.user_note}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.is_superuser}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
 {% endblock %}

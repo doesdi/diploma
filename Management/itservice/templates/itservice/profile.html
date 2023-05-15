@@ -32,7 +32,11 @@
                         <li><p>О себе:</p> {{ user.user_note }}</li>
                         <li><p>Должность:</p> {{ user.user_role }}</li>
                     </ul>
-                    <button class="btn"><a href="{% url 'profile_edit' %}">Редактировать профиль</a></button>
+                    <div class="profile_btn">
+                        <button class="btn_prof"><a href="{% url 'profile_edit' %}">Редактировать профиль</a></button>
+                        <button class="btn_prof_exit"><a href="{% url 'logout' %}">Выйти</a></button>
+                    </div>
+
                 </div>
             </div>
         </div>

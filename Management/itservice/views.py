@@ -1,17 +1,21 @@
+from django.contrib.auth import authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.db import transaction
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView
+from django.views import View
+from django.views.generic import DetailView, UpdateView, CreateView
 from django.core.mail import EmailMessage
-
 
 from .forms import *
 from .models import *
 
-
 import json
 from django.core.mail import send_mail
+
+
 # import smtplib
 # smtpObj = smtplib.SMTP('smtp.mail.ru', 465)
 # smtpObj.starttls()
@@ -160,5 +164,37 @@ def Аpplications(request):
     return render(request, 'itservice/applications.html')
 
 
+def st(request):
+    us = users.objects.all()
+    return render(request, 'itservice/staff.html', {'us': us})
+
+
 def Staff(request):
-    return render(request, 'itservice/staff.html')
+    if request.method == 'POST':
+        form_staff = RegStaff(request.POST)
+        if form_staff.is_valid():
+            form_staff.save()
+            return redirect('staff')
+    else:
+        form_staff = RegStaff()
+    user = request.user
+    us = users.objects.all()
+    return render(request, 'itservice/staff-add.html', {'user': user, 'us': us, 'form': form_staff})
+
+
+class LoginUser(LoginView):
+    form_class = Login
+    template_name = 'itservice/login.html'
+
+    def get_success_url(self):
+        print(1)
+        return reverse_lazy('profile')
+
+
+def Logout_user(request):
+    logout(request)
+    return redirect('tasks')
+
+
+def pageNotFound(request, exeption):
+    return HttpResponseNotFound('<h1>Страница не найдена</h1>')

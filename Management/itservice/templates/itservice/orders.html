@@ -24,7 +24,11 @@
 </script>
 
 <div class="main-window">
+  {% if user.user_role == 'Администратор' or user.user_role == 'Менеджер' %}
   <button class="btn" id="open">Добавить заказ</button>
+  {% else %}
+  <div class="order_"></div>
+  {%endif%}
 
     <div class="modal" id="modal_task">
          <div class="modal_box">
@@ -149,8 +153,6 @@
       </table>
     </div>
   </div>
-
-
 </div>
 </div>
 

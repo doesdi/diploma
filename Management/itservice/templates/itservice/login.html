@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<link rel="stylesheet" href="{% static 'itservice/css/reset.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'itservice/css/login.css' %}" type="text/css">
+    <title>IT Service</title>
+</head>
+<body>
+<div class="page">
+        <div class="container">
+
+            <div class="left">
+                <div class="login">Login</div>
+                <div class="eula">Входя в систему, вы соглашаетесь на смехотворно длинные условия, которые вы не удосужились прочитать</div>
+            </div>
+            <div class="right">
+                <div class="form">
+                     <form method="post">
+                         {% csrf_token %}
+                         {{form.non_field_errors}}
+                         <label for="id_username">Имя пользователя:</label>
+                         <input class="input" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+                         <label for="id_password">Пароль:</label>
+                         <input class="input"  type="password" name="password" autocomplete="current-password" required="" id="id_password">
+                         <button class="btn" id="submit" type="submit">Войти в систему</button>
+
+                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

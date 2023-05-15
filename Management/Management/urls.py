@@ -25,6 +25,8 @@ from itservice.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Tasks, name="tasks"),
+    path('login/', LoginUser.as_view(), name="login"),
+    path('logout/', Logout_user, name="logout"),
     path('profile/', views.Profile, name="profile"),
     path('profile_edit/', ProfileUpdateView.as_view(), name="profile_edit"),
     path('clients/', views.Clients, name="clients"),
@@ -35,9 +37,14 @@ urlpatterns = [
     path('tasks/', views.Tasks, name="tasks"),
     path('tasks-change/', views.Change_Task_st, name="tasks-change"),
     path('applications/', views.Аpplications, name="applications"),
-    path('staff/', views.Staff, name="staff")
+    path('staff/', views.st, name="staff"),
+    path('staff-add/', views.Staff, name="staff-add"),
+
 
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = pageNotFound

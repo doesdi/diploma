@@ -1,0 +1,72 @@
+{% extends 'itservice/main.html' %}
+{% block content %}
+<div class="header-name">
+    Добавление сотрудника
+</div>
+ <div class="help">
+    <span class="tooltip" data-title="Это окно добавления сотрудников.">Помощь</span>
+ </div>
+{% endblock %}
+{% block content1 %}
+<div class="ok"></div>
+
+
+<div class="staff-add">
+      <div class="staff-add_header">
+          Добавление сотрудника
+      </div>
+      <form method="post">
+          {% csrf_token %}
+          <div class="error">{{form.errors}}</div>
+          <p>
+              <label for="id_username">Логин:</label>
+              <input class="input" type="text" name="username" maxlength="150" required="" id="id_username">
+                 </p>
+
+                 <p>
+                     <label for="id_password1">Пароль:</label>
+                     <input  class="input" type="text" name="password1" maxlength="128" required="" id="id_password1">
+                 </p>
+                 <p>
+                     <label for="id_password2">Повтор пароля:</label>
+                     <input  class="input" type="text" name="password2" maxlength="128" required="" id="id_password2">
+                 </p>
+                 <p>
+                     <label for="id_first_name">Имя:</label>
+                     <input  class="input" type="text" name="first_name" maxlength="150" id="id_first_name">
+
+                 </p>
+                 <p>
+                     <label for="id_last_name">Фамилия:</label>
+                     <input  class="input" type="text" name="last_name" maxlength="150" id="id_last_name">
+                 </p>
+                 <p>
+                     <label for="id_email">Адрес электронной почты:</label>
+                     <input  class="input" type="email" name="email" maxlength="254" id="id_email">
+                 </p>
+                 <p>
+                     <label for="id_user_phone">Номер телефона:</label>
+                     <input  class="input" type="text" name="user_phone" maxlength="40" required="" id="id_user_phone">
+                 </p>
+                 <p>
+                     <label for="id_user_note">Примечание:</label>
+                     <input  class="input" type="text" name="user_note" maxlength="50" required="" id="id_user_note">
+                 </p>
+
+
+                 <p>
+                     <label>Должность:</label>
+                     {{form.user_role}}
+                 </p>
+<!--                 {{form.as_p}}-->
+
+          <div class="profile_btn">
+              <button class="but_staff" type="submit">Зарегистрировать</button>
+              <button class="btn_prof_exit"><a href="{% url 'staff' %}">Назад</a></button>
+          </div>
+             </form>
+
+    </div>
+  </div>
+
+{% endblock %}

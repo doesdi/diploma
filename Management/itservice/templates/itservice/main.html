@@ -8,7 +8,6 @@
     <title>IT Service</title>
 </head>
 <body>
-
 <div class="sidebar">
     <div class="sidebar-name">
         IT Service
@@ -18,15 +17,16 @@
         <li><a href="{% url 'profile' %}">Профиль</a></li>
         <li><a href="{% url 'tasks' %}">Задачи</a></li>
         <li><a href="{% url 'orders' %}">Заказы</a></li>
-        <li><a href="{% url 'applications' %}">Заявки</a></li>
         <li><a href="{% url 'sales' %}">Продажи</a></li>
         <li><a href="{% url 'inventory' %}">Склад</a></li>
         <li><a href="{% url 'clients' %}">Клиенты</a></li>
         {% if user.user_role == 'Администратор'%}
         <li><a href="{% url 'staff' %}">Сотрудники</a></li>
+        <li><a href="{% url 'applications' %}">Заявки</a></li>
         <li><a href="{% url 'admin:index' %}">Админ</a></li>
-        {% elif  ser.user_role == 'Менеджер' %}
+        {% elif  user.user_role == 'Менеджер' %}
         <li><a href="{% url 'staff' %}">Сотрудники</a></li>
+        <li><a href="{% url 'applications' %}">Заявки</a></li>
         {%endif%}
     </ul>
     {% else %}
@@ -48,7 +48,7 @@
     {% else %}
     <div class="noauth">
         <span>Вы не авторизованны</span>
-        <a class="but" href="#">Авторизоваться</a>
+        <a class="but" href="{% url 'login' %}">Авторизоваться</a>
     </div>
     {%endif%}
 </main>

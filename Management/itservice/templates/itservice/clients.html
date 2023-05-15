@@ -15,13 +15,38 @@
 
     <div class="modal" id="modal_task">
          <div class="modal_box">
-             <button class="btn" id="close">x</button>
+             <div class="modal_header">
              <h1>Добавление клиента</h1>
+             <button class="but_close" id="close">Закрыть</button>
+             </div>
              <form action="{% url 'clients' %}" method="post">
              {% csrf_token %}
              {{form.non_field_errors}}
-             {{form.as_p}}
-             <button type="submit">Добавить</button>
+             <p>
+                      <label>Тип клиента:</label>
+                      {{form.client_type}}
+                  </p>
+                  <p>
+                      <label for="id_client_name">Имя клиента:</label>
+                      <input class="input"  type="text" name="client_name" maxlength="50" required="" id="id_client_name">
+                  </p>
+                  <p>
+                      <label for="id_client_phone">Номер телефона:</label>
+                      <input class="input"  type="text" name="client_phone" maxlength="40" required="" id="id_client_phone">
+                  </p>
+                  <p>
+                      <label for="id_client_email">Email:</label>
+                      <input class="input"  type="text" name="client_email" maxlength="100" required="" id="id_client_email">
+                  </p>
+                  <p>
+                      <label for="id_client_address">Адрес:</label>
+                      <input class="input" type="text" name="client_address" maxlength="50" required="" id="id_client_address">
+                  </p>
+                  <p>
+                      <label>Откуда клиент узнал о нас?</label>
+                      {{form.client_found}}
+                  </p>
+             <button class="but" type="submit">Добавить</button>
            </form>
          </div>
     </div>

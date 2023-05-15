@@ -15,13 +15,42 @@
 
     <div class="modal" id="modal_task">
          <div class="modal_box">
-             <button class="btn" id="close">x</button>
+             <div class="modal_header">
              <h1>Добавление устройства</h1>
+             <button class="but_close" id="close">Закрыть</button>
+             </div>
               <form action="{% url 'inventory' %}" method="post">
-             {% csrf_token %}
-             {{form.non_field_errors}}
-             {{form.as_p}}
-             <button type="submit">Добавить</button>
+                  {% csrf_token %}
+                  {{form.non_field_errors}}
+                  <p>
+                      <label>Категория:</label>
+                      {{form.inventory_type}}
+                  </p>
+                  <p>
+                      <label for="id_inventory_article">Артикул:</label>
+                      <input class="input" type="number" name="inventory_article" required="" id="id_inventory_article">
+                  </p>
+                  <p>
+                      <label for="id_inventory_name">Название:</label>
+                      <input class="input" type="text" name="inventory_name" maxlength="50" required="" id="id_inventory_name">
+                  </p>
+                  <p>
+                      <label for="id_inventory_color">Цвет:</label>
+                      <input class="input" type="text" name="inventory_color" maxlength="40" required="" id="id_inventory_color">
+                  </p>
+                  <p>
+                      <label for="id_inventory_condition">Состояние:</label>
+                      <input type="text" name="inventory_condition" maxlength="100" required="" id="id_inventory_condition">
+                  </p>
+                  <p>
+                      <label for="id_inventory_description">Описание:</label>
+                      <input type="text" name="inventory_description" maxlength="1000" required="" id="id_inventory_description">
+                  </p>
+                  <p>
+                      <label>Клиент:</label>
+                      {{form.inventory_client}}
+                  </p>
+             <button  class="but" type="submit">Добавить</button>
            </form>
          </div>
     </div>
