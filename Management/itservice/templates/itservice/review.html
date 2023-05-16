@@ -1,0 +1,38 @@
+{% extends 'itservice/home.html' %}
+{% block content1 %}
+<p>Отзывы</p>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="window">
+    <div class="buttons">
+        <button class="butt-rev"> <a class href="{% url 'review_add' %}">Оставить отзыв</a></button>
+        <button class="butt-rev"><a href="{% url 'home' %}">Назад</a></button>
+    </div>
+
+<div class="review">
+
+{% for r in reviews%}
+    <div class="grade">
+        <div class="grade_header">
+            {% if r.review_gender == 'Мужчина'%}
+            <img class="img" src="/media/photos/review/man.jpg" alt="">
+            {% else %}
+            <img class="img" src="/media/photos/review/woman.jpg" alt="">
+            {% endif %}
+        </div>
+   <p>{{r.review_grade}}</p>
+            <h1>Почта: {{r.review_email}}</h1>
+            <p class="">Фио: {{r.review_fio}}</p>
+            <p class="">Пол: {{r.review_gender}}</p>
+        <p class="">Отзыв: {{r.review_comment}}</p>
+
+    </div>
+
+
+{% endfor %}
+</div>
+</div>
+{% endblock %}

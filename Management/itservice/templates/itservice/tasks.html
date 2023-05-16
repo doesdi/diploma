@@ -24,7 +24,11 @@
 
 
 <div class="main-window">
-    <button class="btn" id="open">Добавить задачу</button>
+    {% if user.user_role == 'Администратор' or user.user_role == 'Менеджер' %}
+  <button class="btn" id="open">Добавить задачу</button>
+  {% else %}
+  <div class="order_"></div>
+  {%endif%}
     <div class="modal" id="modal_task">
          <div class="modal_box">
              <div class="modal_header">
@@ -71,7 +75,7 @@
                 <div class="panel-title">Задачи в разработке</div>
                 {% for p in task%}
                  {% if p.task_active == 1 %}
-                <a href="{{ p.get_absolute_url }}">
+                <div class="tasks">
                     <div>
                         <label class="toggler-wrapper ">
                             {% if p.task_active %}
@@ -89,7 +93,7 @@
                         <p class="desc">{{p.task_description|linebreaks|truncatewords:25}}</p>
                         <p class="time">Крайний срок: {{p.task_time}}</p>
                     </li>
-                </a>
+                </div>
                  {% else %}
                 {% endif %}
                 {% endfor %}
@@ -98,7 +102,7 @@
                 <div class="panel-title">Выполненные задачи</div>
                 {% for p in task%}
                  {% if p.task_active == 0 %}
-                <a href="{{ p.get_absolute_url }}">
+                <div class="tasks">
                     <div>
                         <label class="toggler-wrapper ">
                              {% if p.task_active %}
@@ -120,7 +124,7 @@
                         <p class="time_2">Крайний срок: {{p.task_time}}</p>
                         {%endif%}
                     </li>
-                </a>
+                </div>
                  {% else %}
                 {% endif %}
                 {% endfor %}

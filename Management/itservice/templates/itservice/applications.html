@@ -9,5 +9,92 @@
  </div>
 {% endblock %}
 {% block content1 %}
-<div class="main-window"></div>
+<script>
+    const Change_appl_status = (application_id)=> {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", "{% url 'applications-change' %}" , false);
+        xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xmlHttp.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+        console.log(xmlHttp);
+        xmlHttp.send(`{"application_id": ${application_id}}`);
+        window.location.reload()
+    }
+</script>
+<div class="main-window">
+    <div class="order_"></div>
+ <div class="warpper">
+        <input class="radio" id="one" name="group" type="radio" checked>
+        <input class="radio" id="two" name="group" type="radio">
+        <div class="tabs">
+            <label class="tab" id="one-tab" for="one">Необработанные</label>
+            <label class="tab" id="two-tab" for="two">Обработанные</label>
+        </div>
+
+        <div class="panels">
+            <div class="panel" id="one-panel">
+                <div class="panel-title">Необработанные заявки</div>
+                {% for p in appl%}
+                 {% if p.application_active == 1 %}
+                <div class="tasks_appl">
+                    <div class="applo">
+                        <label class="toggler-wrapper ">
+                            {% if p.application_active %}
+                            <input type="checkbox" onclick="Change_appl_status({{p.id}})"/>
+                            {% else %}
+                            <input type="checkbox" onclick="Change_appl_status({{p.id}})" checked/>
+                            {%endif%}
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                        <li class="task-inf">
+                            <h1>Почта: {{p.application_email}}</h1>
+                            <p class="desc2">Фио: {{p.application_fio}}</p>
+                            <p class="desc2">Телефон: {{p.application_phone}}</p>
+                            <p class="desc2">Адрес: {{p.application_address}}</p>
+                            <p class="desc2">Откуда узнал: {{p.application_found}}</p>
+                        </li>
+                    </div>
+                    <p class="desc1">Заявка: {{p.application_comment}}</p>
+
+                </div>
+                 {% else %}
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="panel" id="two-panel">
+                <div class="panel-title">Обработанные заявки</div>
+                 {% for p in appl%}
+                 {% if p.application_active == 0 %}
+                <div class="tasks_appl">
+                    <div class="applo">
+                        <label class="toggler-wrapper ">
+                            {% if p.application_active %}
+                            <input type="checkbox" onclick="Change_appl_status({{p.id}})"/>
+                            {% else %}
+                            <input type="checkbox" onclick="Change_appl_status({{p.id}})" checked/>
+                            {%endif%}
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                        <li class="task-inf">
+                            <h1>Почта: {{p.application_email}}</h1>
+                            <p class="desc2">Фио: {{p.application_fio}}</p>
+                            <p class="desc2">Телефон: {{p.application_phone}}</p>
+                            <p class="desc2">Адрес: {{p.application_address}}</p>
+                            <p class="desc2">Откуда узнал: {{p.application_found}}</p>
+                        </li>
+                    </div>
+                    <p class="desc1">Заявка: {{p.application_comment}}</p>
+
+                </div>
+                 {% else %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

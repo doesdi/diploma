@@ -75,3 +75,16 @@ class AddClientFrom(forms.ModelForm):
     class Meta:
         model = client
         fields = "__all__"
+
+
+class AddApplication(forms.ModelForm):
+    class Meta:
+        model = application
+        fields = ['application_fio', 'application_phone', 'application_email',
+                  'application_address', 'application_found', 'application_comment']
+
+
+class AddReview(forms.ModelForm):
+    class Meta:
+        model = review
+        fields = ['review_fio', 'review_gender', 'review_email', 'review_comment', 'review_grade']

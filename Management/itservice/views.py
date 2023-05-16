@@ -27,6 +27,39 @@ def Main(request):
     return render(request, 'itservice/main.html', {'user': user})
 
 
+def Home(request):
+    return render(request, 'itservice/home.html')
+
+
+def Review(request):
+    if request.method == 'POST':
+        form_review = AddReview(request.POST)
+        if form_review.is_valid():
+            form_review.save()
+            return redirect('home')
+    else:
+        form_review = AddReview()
+    reviews = review.objects.all()
+    return render(request, 'itservice/review-add.html', {'reviews': reviews, 'form': form_review})
+
+
+def Rev(request):
+    reviews = review.objects.all()
+    return render(request, 'itservice/review.html', {'reviews': reviews})
+
+
+def Application(request):
+    if request.method == 'POST':
+        form_appl = AddApplication(request.POST)
+        if form_appl.is_valid():
+            form_appl.save()
+            return redirect('home')
+    else:
+        form_appl = AddApplication()
+    applications = application.objects.all()
+    return render(request, 'itservice/application-add.html', {'applications': applications, 'form': form_appl})
+
+
 def Profile(request):
     user = request.user
     if request.method == 'POST':
@@ -152,6 +185,14 @@ def Change_Task_st(request):
     return HttpResponse("true")
 
 
+def Change_appl_status(request):
+    body = json.loads(request.body)
+    applications = application.objects.get(pk=body["application_id"])
+    applications.application_active = not applications.application_active
+    applications.save()
+    return HttpResponse("true")
+
+
 def Change_Order_st(request):
     body = json.loads(request.body)
     order = orders.objects.get(pk=body["order_id"])
@@ -161,7 +202,8 @@ def Change_Order_st(request):
 
 
 def Аpplications(request):
-    return render(request, 'itservice/applications.html')
+    appl = application.objects.all()
+    return render(request, 'itservice/applications.html', {'appl': appl})
 
 
 def st(request):
@@ -198,3 +240,4 @@ def Logout_user(request):
 
 def pageNotFound(request, exeption):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+

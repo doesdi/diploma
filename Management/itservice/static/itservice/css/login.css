@@ -31,7 +31,7 @@ body {
 }
 .container {
   display: flex;
-  height: 320px;
+  height: 370px;
   margin: 0 auto;
   width: 640px;
 }
@@ -72,6 +72,7 @@ body {
   background: #474A59;
   box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
   color: #F1F1F2;
+
   position: relative;
   width: 50%;
 }
@@ -88,7 +89,8 @@ svg {
   width: 320px;
 }
 .form {
-  margin: 40px;
+  margin-left: 40px;
+  margin-top: 20px;
   position: absolute;
 }
 label {
@@ -96,7 +98,7 @@ label {
   display: block;
   font-size: 17px;
   height: 16px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 input {
@@ -132,10 +134,36 @@ input::-moz-focus-inner {
   color: #252930;
   border: 2px solid #252930;
   border-radius: 40px;
+  box-shadow: 0px 0px 40px 7px rgba(0,0,0,0.40);
 }
 
 .btn:hover {
   background-color: #252930;
   color: white;
+  box-shadow: none;
+}
+
+.btn-close{
+  margin-top: 20px;
+  margin-left: 200px;
+  background-color: white;
+  display: block;
+  position: center;
+  font-size: 17px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+  color: #252930;
+  border: 2px solid #252930;
+  border-radius: 40px;
+  box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.40);
+}
+
+.btn-close:hover {
+  background-color: #252930;
+  color: white;
+  box-shadow: none;
 }
 

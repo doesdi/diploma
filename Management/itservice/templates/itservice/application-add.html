@@ -1,0 +1,38 @@
+{% extends 'itservice/home.html' %}
+{% block content1 %}
+<p>Заявка</p>
+{% endblock %}
+{% block content %}
+ <div class="form_app">
+     <a class="butt-close"href="{% url 'home' %}">Назад</a>
+     <form method="post">
+         {% csrf_token %}
+         {{form.non_field_errors}}
+         <p>
+             <label for="id_application_fio">Фио:</label>
+             <input class="input_a" type="text" name="application_fio" maxlength="50" required="" id="id_application_fio">
+         </p>
+         <p>
+             <label for="id_application_phone">Телефон:</label>
+             <input class="input_a" type="text" name="application_phone" maxlength="50" required="" id="id_application_phone">
+         </p>
+         <p>
+             <label for="id_application_email">Почта:</label>
+             <input class="input_a" type="email" name="application_email" maxlength="50" required="" id="id_application_email">
+         </p>
+         <p>
+             <label for="id_application_address">Ваш адрес:</label>
+             <input class="input_a" type="text" name="application_address" maxlength="50" required="" id="id_application_address">
+         </p>
+         <p>
+             <label for="id_application_comment">Заявка:</label>
+             <input class="input_a" type="text" name="application_comment" maxlength="300" required="" id="id_application_comment">
+         </p>
+         <p>
+             <label>Откуда вы узнали о нас?</label>
+             {{form.application_found}}
+         </p>
+         <button class="butt" type="submit">Отправить</button>
+     </form>
+ </div>
+{% endblock %}

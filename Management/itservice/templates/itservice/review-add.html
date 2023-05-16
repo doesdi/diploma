@@ -1,0 +1,34 @@
+{% extends 'itservice/home.html' %}
+{% block content1 %}
+<p>Добавление отзыва</p>
+{% endblock %}
+{% block content %}
+<div class="form_app">
+     <a class="butt-close"href="{% url 'home' %}">Назад</a>
+     <form method="post">
+         {% csrf_token %}
+         {{form.non_field_errors}}
+         <p>
+             <label for="id_review_fio">Фио:</label>
+             <input class="input_a" type="text" name="review_fio" maxlength="50" required="" id="id_review_fio">
+         </p>
+         <p>
+             <label for="id_review_email">Почта:</label>
+             <input class="input_a" type="email" name="review_email" maxlength="50" required="" id="id_review_email">
+         </p>
+         <p>
+             <label for="id_review_comment">Отзыв:</label>
+             <input class="input_a" type="text" name="review_comment" maxlength="150" required="" id="id_review_comment">
+         </p>
+         <p>
+             <label class="op">Пол:</label>
+             {{form.review_gender}}
+         </p>
+         <p>
+             <label class="op">Оценка:</label>
+             {{form.review_grade}}
+         </p>
+         <button class="butt" type="submit">Отправить</button>
+     </form>
+ </div>
+{% endblock %}

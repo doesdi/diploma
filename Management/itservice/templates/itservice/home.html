@@ -1,0 +1,24 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<link rel="stylesheet" href="{% static 'itservice/css/reset.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'itservice/css/home.css' %}" type="text/css">
+    <title>IT Service</title>
+</head>
+<body>
+<div class="main-title">
+    {% block content1 %}
+    <p>IT Service</p>
+    {% endblock %}
+</div>
+<div class="main">
+    {% block content %}
+    <a class="btn" href="{% url 'applications_add' %}">Оставить заявку</a>
+    <a class="btn" href="{% url 'review' %}">Отзывы</a>
+    <a class="btn" href="{% url 'login' %}">Для персонала</a>
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -11,7 +11,11 @@
 {% block content1 %}
 
 <div class="main-window">
-    <button class="btn" id="open">Добавить продажу</button>
+     {% if user.user_role == 'Администратор' or user.user_role == 'Менеджер' %}
+  <button class="btn" id="open">Добавить продажу</button>
+  {% else %}
+  <div class="order_"></div>
+  {%endif%}
 
     <div class="modal" id="modal_task">
          <div class="modal_box">

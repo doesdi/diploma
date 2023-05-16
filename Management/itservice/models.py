@@ -61,7 +61,6 @@ class client(models.Model):
 
 
 class orders(models.Model):
-
     order_name = models.CharField(max_length=50, verbose_name="Название заказа")
     order_description = models.CharField(max_length=1000, verbose_name="Требования к заказу")
     order_time = models.DateTimeField(default=datetime.now, verbose_name="Крайний срок")
@@ -100,3 +99,46 @@ class sales(models.Model):
 
     def __str__(self):
         return self.sales_name
+
+
+class review(models.Model):
+    Gender = (
+        ('Мужчина', 'Мужчина'),
+        ('Женщина', 'Женщина')
+    )
+    Grade = (
+        ('Отлично!', 'Отлично!'),
+        ('Очень хорошо', 'Очень хорошо'),
+        ('Хорошо', 'Хорошо'),
+        ('Плохо', 'Плохо'),
+        ('Очень плохо', 'Очень плохо'),
+    )
+
+    review_fio = models.CharField(max_length=50, verbose_name="Фио")
+    review_gender = models.CharField(max_length=15, choices=Gender, default='Мужчина',
+                                     verbose_name="Пол")
+    review_email = models.EmailField(max_length=50, verbose_name="Почта")
+    review_comment = models.CharField(max_length=150, verbose_name="Отзыв")
+    review_grade = models.CharField(max_length=15,choices=Grade, default='Мужчина', verbose_name="Оценка")
+
+    def __str__(self):
+        return self.review_email
+
+
+class application(models.Model):
+    Found = (
+        ('Знакомые', 'Знакомые'),
+        ('Интернет', 'Интернет'),
+        ('Реклама', 'Реклама')
+    )
+    application_fio = models.CharField(max_length=50, verbose_name="Фио")
+    application_phone = models.CharField(max_length=50, verbose_name="Телефон")
+    application_email = models.EmailField(max_length=50, verbose_name="Email")
+    application_address = models.CharField(max_length=50, verbose_name="Ваш адрес")
+    application_found = models.CharField(max_length=15, choices=Found, default='Реклама',
+                                         verbose_name="Откуда вы узнали о нас?")
+    application_comment = models.CharField(max_length=300, verbose_name="Заявка")
+    application_active = models.BooleanField(default=True, verbose_name="Активна")
+
+    def __str__(self):
+        return self.application_email

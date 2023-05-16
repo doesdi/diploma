@@ -16,6 +16,7 @@
                 <div class="eula">Входя в систему, вы соглашаетесь на смехотворно длинные условия, которые вы не удосужились прочитать</div>
             </div>
             <div class="right">
+                <button class="btn-close"><a href="{% url 'home' %}">Назад</a></button>
                 <div class="form">
                      <form method="post">
                          {% csrf_token %}
@@ -25,7 +26,6 @@
                          <label for="id_password">Пароль:</label>
                          <input class="input"  type="password" name="password" autocomplete="current-password" required="" id="id_password">
                          <button class="btn" id="submit" type="submit">Войти в систему</button>
-
                      </form>
                 </div>
             </div>
