@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.template.defaulttags import url
 from django.urls import path
 
 from Management import settings
@@ -44,6 +45,8 @@ urlpatterns = [
     path('home/', views.Home, name="home"),
     path('review/', views.Rev, name="review"),
     path('review-add/', views.Review, name="review_add"),
+    path('sales-down/', views.Download_table, name="sales-down"),
+
 
 ]
 

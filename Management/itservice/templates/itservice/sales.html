@@ -9,10 +9,20 @@
  </div>
 {% endblock %}
 {% block content1 %}
+<script>
+    const Download_table = ()=> {
+        // var xmlHttp = new XMLHttpRequest();
+        // xmlHttp.open("GET", "{% url 'sales-down' %}" , false);
+        // xmlHttp.send();
+        window.location="{% url 'sales-down' %}"
+
+    }
+</script>
 
 <div class="main-window">
      {% if user.user_role == 'Администратор' or user.user_role == 'Менеджер' %}
-  <button class="btn" id="open">Добавить продажу</button>
+    <button class="btn" id="open">Добавить продажу</button>
+
   {% else %}
   <div class="order_"></div>
   {%endif%}
@@ -54,6 +64,7 @@
 <div class="ok"></div>
     <div class="warpper">
         <div class="panels">
+             <button class="btn_down" onclick="Download_table()" >Скачать таблицу</button>
             <div class="panel-title">Продажи</div>
             <table class="table">
                 <thead>
@@ -80,6 +91,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>

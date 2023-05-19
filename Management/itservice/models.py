@@ -4,12 +4,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-class role(models.Model):
-    role_name = models.CharField(max_length=50, verbose_name="Название роли")
-
-    def __str__(self):
-        return self.role_name
-
 
 class users(AbstractUser):
     Type = (
@@ -24,6 +18,11 @@ class users(AbstractUser):
     user_photo = models.ImageField(upload_to="photos/%y/%m/%d/", verbose_name="Фото сотрудника")
     user_role = models.CharField(max_length=50, choices=Type, default='Программист', verbose_name="Должность")
 
+    class Meta:
+        verbose_name = "Пользователи"
+        verbose_name_plural = "Пользователи"
+
+
 
 class tasks(models.Model):
     task_name = models.CharField(max_length=50, verbose_name="Название задачи")
@@ -33,6 +32,10 @@ class tasks(models.Model):
 
     def __str__(self):
         return self.task_name
+
+    class Meta:
+        verbose_name = "Задачи"
+        verbose_name_plural = "Задачи"
 
 
 class client(models.Model):
@@ -59,6 +62,10 @@ class client(models.Model):
     def __str__(self):
         return self.client_name
 
+    class Meta:
+        verbose_name = "Клиент"
+        verbose_name_plural = "Клиент"
+
 
 class orders(models.Model):
     order_name = models.CharField(max_length=50, verbose_name="Название заказа")
@@ -70,6 +77,10 @@ class orders(models.Model):
 
     def __str__(self):
         return self.order_name
+
+    class Meta:
+        verbose_name = "Заказы"
+        verbose_name_plural = "Заказы"
 
 
 class inventory(models.Model):
@@ -89,6 +100,10 @@ class inventory(models.Model):
     def __str__(self):
         return self.inventory_name
 
+    class Meta:
+        verbose_name = "Склад"
+        verbose_name_plural = "Склад"
+
 
 class sales(models.Model):
     sales_name = models.CharField(max_length=100, verbose_name="Наименование работы")
@@ -99,6 +114,10 @@ class sales(models.Model):
 
     def __str__(self):
         return self.sales_name
+
+    class Meta:
+        verbose_name = "Продажи"
+        verbose_name_plural = "Продажи"
 
 
 class review(models.Model):
@@ -124,6 +143,10 @@ class review(models.Model):
     def __str__(self):
         return self.review_email
 
+    class Meta:
+        verbose_name = "Отзывы"
+        verbose_name_plural = "Отзывы"
+
 
 class application(models.Model):
     Found = (
@@ -142,3 +165,7 @@ class application(models.Model):
 
     def __str__(self):
         return self.application_email
+
+    class Meta:
+        verbose_name = "Заявки"
+        verbose_name_plural = "Заявки"

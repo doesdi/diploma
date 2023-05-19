@@ -693,6 +693,31 @@ ul li:hover a{
 
 }
 
+
+.btn_down{
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    background-color: transparent;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    font-size: 15px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    color: #252930;
+    border: 2px solid #252930;
+    border-radius: 6px;
+
+}
+.btn_down:hover {
+    background-color: #252930;
+    color: white;
+
+}
+
+
 .order_{
     height: 60px;
 }

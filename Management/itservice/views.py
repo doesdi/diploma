@@ -8,6 +8,11 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, UpdateView, CreateView
 from django.core.mail import EmailMessage
+import pandas as pd
+import codecs
+from django.http import FileResponse
+from openpyxl.workbook import Workbook
+
 
 from .forms import *
 from .models import *
@@ -240,4 +245,20 @@ def Logout_user(request):
 
 def pageNotFound(request, exeption):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+
+
+def Download_table(request):
+    sale = sales.objects.all()
+    data = []
+    columns = ['Наименование работы', 'Комментарий', 'Цена', 'Время продажи', 'Клиент']
+    for i in sale:
+        print(i)
+        data.append([i.sales_name, i.sales_comment, i.sales_price, i.sales_time, i.sales_client])
+    df = pd.DataFrame(data, columns=columns)
+    df['Время продажи'] = df['Время продажи'].dt.tz_localize(None)
+    df.to_excel('itservice/Exel/Sale.xlsx', index=False)
+    file = open('itservice/Exel/Sale.xlsx', "rb")
+    return FileResponse(file)
+
+
 
