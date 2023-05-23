@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'itservice.apps.ItserviceConfig',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -143,6 +144,10 @@ MEDIA_URL = '/media/'
 # EMAIL_HOST_PASSWORD = 'itservice533'
 # EMAIL_PORT = 465
 
+GRAPH_MODELS = {
+    "all_applications": True,
+    "group_models": True,
+}
 
 
 

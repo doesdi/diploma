@@ -138,7 +138,7 @@ class review(models.Model):
                                      verbose_name="Пол")
     review_email = models.EmailField(max_length=50, verbose_name="Почта")
     review_comment = models.CharField(max_length=150, verbose_name="Отзыв")
-    review_grade = models.CharField(max_length=15,choices=Grade, default='Мужчина', verbose_name="Оценка")
+    review_grade = models.CharField(max_length=15, choices=Grade, default='Отлично!', verbose_name="Оценка")
 
     def __str__(self):
         return self.review_email
