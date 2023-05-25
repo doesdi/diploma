@@ -162,19 +162,6 @@ def Tasks(request):
         form = AddTaskFrom(request.POST)
         if form.is_valid():
             form.save()
-            # smtpObj.sendmail("itservicediplom1@mail.ru", "samoilovzeka31@mail.ru", "go to bed!")
-            # send_mail(
-            #     "Задача создана",
-            #     "Here is the message.",
-            #     "from@example.com",
-            #     ["to@example.com"],
-            #     fail_silently=False,
-            # )
-            # print(1)
-            # email = EmailMessage('Новая задача', 'Афигеть', to=['samoilovzeka31@mail.ru'])
-            # print(2)
-            # email.send()
-            # print(3)
             return redirect('tasks')
     else:
         form = AddTaskFrom()

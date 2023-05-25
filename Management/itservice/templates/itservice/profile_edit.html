@@ -35,15 +35,6 @@
               <label for="id_user_phone">Номер телефона:</label>
               <input class="input" type="text" name="user_phone" value="{{user.user_phone}}" maxlength="40" required="" id="id_user_phone">
           </p>
-<!--          <p>-->
-<!--              <label for="id_user_note">Примечание:</label>-->
-<!--              <input class="input" type="text" name="user_note" value="{{user.user_note}}" maxlength="50" required="" id="id_user_note">-->
-<!--          </p>-->
-<!--          <p>-->
-<!--              <label for="id_user_time">Дата начала работы:</label>-->
-<!--              <input class="input" type="date" name="user_time" value="{{user.user_time}}" required="" id="id_user_time">-->
-
-<!--          </p>-->
           <p>
               <label for="id_user_photo">Фото сотрудника на данный момент:</label>
               <a class="photo_url" href="/media/{{user.user_photo}}">{{user.user_photo}}</a><br>
@@ -51,7 +42,6 @@
               <input  type="file" name="user_photo" accept="image/*" id="id_user_photo">
           </p>
 
-<!--{{ user_form.as_p }}-->
          <button type="submit" class="btn">Подтвердить изменение профиля</button>
       </form>
 </div>

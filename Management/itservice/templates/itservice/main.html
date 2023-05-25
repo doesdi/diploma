@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<!--css файлы-->
 	<link rel="stylesheet" href="{% static 'itservice/css/reset.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'itservice/css/main.css' %}" type="text/css">
+<!--Иконка Favicon-->
     <link rel="shortcut icon" type="image/png" href="{% static 'itservice/static/itservice/favicon/1.png' %}"/>
     <title>IT Service</title>
 </head>
 <body>
+<!--Левый сайдбар-->
 <div class="sidebar">
     <div class="sidebar-name">
         IT Service
     </div>
+<!--Если сотрудник авторизован, то-->
     {% if user.is_authenticated %}
     <ul>
         <li><a href="{% url 'profile' %}">Профиль</a></li>
@@ -35,6 +39,7 @@
     {%endif%}
 </div>
 <main class="main">
+    <!--Если сотрудник авторизован, то-->
     {% if user.is_authenticated %}
     <div class="header">
        {% block content %}
@@ -48,14 +53,14 @@
     </div>
     {% else %}
     <div class="noauth">
-        <span>Вы не авторизованны</span>
+        <span>Вы не авторизованы</span>
         <a class="but" href="{% url 'login' %}">Авторизоваться</a>
     </div>
     {%endif%}
 </main>
 <script language="JavaScript">
 
-
+<!--Скрипт для открытия и закрытия модальных окон-->
     document.getElementById("open").addEventListener("click",function () {
     document.getElementById("modal_task").classList.add("open")
     })

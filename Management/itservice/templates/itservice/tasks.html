@@ -11,6 +11,7 @@
 {% endblock %}
 {% block content1 %}
 <script>
+<!--Скрипт для внесения изменений в бд, после переключения чекбокса-->
     const Change_task_status = (task_id)=> {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("POST", "{% url 'tasks-change' %}" , false);

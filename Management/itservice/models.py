@@ -4,7 +4,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-
 class users(AbstractUser):
     Type = (
         ('Администратор', 'Администратор'),
@@ -21,7 +20,6 @@ class users(AbstractUser):
     class Meta:
         verbose_name = "Пользователи"
         verbose_name_plural = "Пользователи"
-
 
 
 class tasks(models.Model):
@@ -160,7 +158,7 @@ class application(models.Model):
     application_address = models.CharField(max_length=50, verbose_name="Ваш адрес")
     application_found = models.CharField(max_length=15, choices=Found, default='Реклама',
                                          verbose_name="Откуда вы узнали о нас?")
-    application_comment = models.CharField(max_length=300, verbose_name="Заявка")
+    application_comment = models.CharField(max_length=150, verbose_name="Заявка")
     application_active = models.BooleanField(default=True, verbose_name="Активна")
 
     def __str__(self):
